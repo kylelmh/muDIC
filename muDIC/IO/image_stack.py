@@ -3,7 +3,7 @@ import os
 from copy import copy
 from functools import partial
 
-import numpy as np
+import cupy as np
 from scipy import ndimage
 import imageio as io
 from natsort import natsorted
@@ -32,7 +32,7 @@ class ImageStack(object):
          Examples
          ----------
         >>> import muDIC as dic
-        >>> import numpy as np
+        >>> import cupy as np
         >>> image_list = [np.ones((3,3))*i for i in range(10)]
         >>> image_stack = dic.image_stack_from_list(image_list)
         >>> image_stack.set_filter(dic.filtering.lowpass_gaussian,sigma=2)
@@ -243,7 +243,7 @@ def image_stack_from_list(image_list):
      Examples
      --------
         >>> import muDIC as dic
-        >>> import numpy as np
+        >>> import cupy as np
         >>> image_list = [np.random.rand(10,10) for i in range(10)]
         >>> image_stack = dic.image_stack_from_folder(image_list)
     ImageStack

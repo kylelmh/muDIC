@@ -1,8 +1,8 @@
 import logging
 from functools import partial
 
-import numpy as np
-import scipy.ndimage as nd
+import cupy as np
+import cupyx.scipy.ndimage as nd
 from scipy import optimize
 
 
@@ -106,7 +106,7 @@ class ImageDeformer(object):
         Make a ImageDeformed which deforms the image according to a deformation gradient.
         NOTE: You should rather use the factory imageDeformer_from_defGrad.
 
-        >>> import numpy as np
+        >>> import cupy as np
         >>> from muDIC import vlab
         >>> F = np.array([[1.1,.0], [0., 1.0]], dtype=float)
         >>> coordinate_mapper = vlab.image_deformer.CoordinateMapper(partial(map_coords_by_defgrad, F=F))
@@ -193,7 +193,7 @@ def imageDeformer_from_defGrad(F):
     Examples
     --------
     First, we define the deformation gradient and then make an ImageDeformer object:
-        >>> import numpy as np
+        >>> import cupy as np
         >>> from muDIC import vlab
         >>> F = np.array([[1.1,.0], [0., 1.0]], dtype=float)
         >>> image_deformer = vlab.imageDeformer_from_defGrad(F)

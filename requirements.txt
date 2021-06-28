@@ -1,8 +1,7 @@
 numba
-scipy
 imageio
 matplotlib
-numpy
+cupy-cuda101
 Pillow
 dill
 nose

@@ -3,7 +3,7 @@ from __future__ import print_function
 import logging
 from copy import copy
 
-import numpy as np
+import cupy as np
 
 from ..IO.image_stack import ImageStack
 from ..elements.b_splines import BSplineSurface

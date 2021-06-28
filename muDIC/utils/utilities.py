@@ -1,6 +1,6 @@
 from functools import reduce
-import scipy.ndimage as nd
-import numpy as np
+import cupyx.scipy.ndimage as nd
+import cupy as np
 
 
 def convert_to_img_frame(img, node_position, mesh, borders, settings):

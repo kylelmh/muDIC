@@ -1,5 +1,5 @@
-import numpy as np
-import scipy.ndimage as nd
+import cupy as np
+import cupyx.scipy.ndimage as nd
 from scipy.ndimage import median_filter
 
 

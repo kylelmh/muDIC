@@ -1,4 +1,4 @@
-import numpy as np
+import cupy as np
 import matplotlib.pyplot as plt
 from muDIC.phantoms.downsampler import coord_subpos,chess_board
 

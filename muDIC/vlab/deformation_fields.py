@@ -1,4 +1,4 @@
-import numpy as np
+import cupy as np
 
 
 def harmonic_x(xs, _, amp=1.1, omega=0.05 * np.pi, frame=1):

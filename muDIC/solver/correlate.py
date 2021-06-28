@@ -3,8 +3,10 @@ from __future__ import absolute_import
 import logging
 from copy import copy
 
-import numpy as np
-import scipy.ndimage as nd
+import cupy as np
+import cupyx.scipy.ndimage as nd
+# import cupy as np
+# import cupyx.scipy.ndimage as nd
 
 from .reference import generate_reference
 from .reference_q4 import generate_reference_Q4, find_elm_borders_mesh, normalized_zero_mean
@@ -332,7 +334,7 @@ class DICAnalysis(object):
         The following example runs a virtual experiment
 
             >>> import muDIC as dic
-            >>> import numpy as np
+            >>> import cupy as np
             >>> import muDIC.vlab as vlab
 
             >>> image_shape = (2000, 2000)

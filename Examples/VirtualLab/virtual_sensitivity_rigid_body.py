@@ -2,7 +2,7 @@ import muDIC as dic
 from muDIC import vlab
 import matplotlib.pyplot as plt
 import logging
-import numpy as np
+import cupy as np
 
 """
 In this example we investigate how small displacements we can detect for a given noise level.

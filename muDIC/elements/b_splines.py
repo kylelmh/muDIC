@@ -1,6 +1,6 @@
 import logging
 
-import numpy as np
+import cupy as np
 from numba import jit, prange
 
 from .fieldInterpolator import FieldInterpolator
@@ -40,7 +40,7 @@ class BSplineSurface(FieldInterpolator):
          Examples
          --------
             >>> import muDIC as dic
-            >>> import numpy as np
+            >>> import cupy as np
             >>> es,ns = np.meshgrid(np.linspace(0.,1.,10),np.linspace(0.,1.,10))
             >>> surface = dic.elements.B_spline_surface(deg_e=3, deg_n=3, n_ctrlpts_e=6, n_ctrlpts_n=6)
             >>> bases = surface.Nn(es.flatten(),ns.flatten())

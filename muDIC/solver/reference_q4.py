@@ -1,8 +1,8 @@
-import numpy as np
+import cupy as np
 from ..utils import find_borders
 from .reference import Reference
 
-import numpy as np
+import cupy as np
 
 
 

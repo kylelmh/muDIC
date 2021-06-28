@@ -1,4 +1,4 @@
-import numpy as np
+import cupy as np
 
 from . import image_deformer as cordmap
 from .downsampler import Downsampler

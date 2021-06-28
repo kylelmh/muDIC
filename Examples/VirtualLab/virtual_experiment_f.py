@@ -5,7 +5,7 @@ sys.path.extend([abspath(".")])
 
 # Example code follows
 import logging
-import numpy as np
+import cupy as np
 import matplotlib.pyplot as plt
 import muDIC.vlab as vlab
 import muDIC as dic

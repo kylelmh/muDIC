@@ -12,7 +12,7 @@ This module is directly based on the conference paper:
 
 """
 
-import numpy as np
+import cupy as np
 from scipy import ndimage
 
 
@@ -47,7 +47,7 @@ def coord_subpos(coord, fillfactor, n, i, sigma):
     The following example bins the image in 4 x 4 bins
 
         >>> from muDIC import vlab
-        >>> import numpy as np
+        >>> import cupy as np
         >>> pixel_centers = np.ones((1,1))
         >>> n=5
         >>> indices = np.arange(n)[:,np.newaxis] * np.ones((n,n))

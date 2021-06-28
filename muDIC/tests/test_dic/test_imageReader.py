@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import numpy as np
+import cupy as np
 
 from muDIC.IO import ImageStack
 from muDIC.IO.image_stack import ImageReader

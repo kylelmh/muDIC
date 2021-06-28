@@ -1,6 +1,6 @@
 import random
 
-import numpy as np
+import cupy as np
 from scipy.ndimage import gaussian_filter
 
 try:

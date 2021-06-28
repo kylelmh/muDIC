@@ -1,6 +1,6 @@
 from functools import partial
 
-import numpy as np
+import cupy as np
 
 
 def gaussian_noise_model(size, sigma):
@@ -25,7 +25,7 @@ def noise_injector(noise_model="gaussian", sigma=0.0):
     Let us make an noise injector which adds gaussian noise with a standard deviation of 1.
 
     >>> from muDIC import vlab
-    >>> import numpy as np
+    >>> import cupy as np
     >>> img = np.ones((100,100))
     >>> noise_injector = vlab.noise_injector("gaussian", sigma=.1)
     >>> noisy_image = noise_injector(img)

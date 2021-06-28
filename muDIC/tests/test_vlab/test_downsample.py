@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import numpy as np
+import cupy as np
 
 from muDIC.vlab import Downsampler
 from muDIC.vlab.downsampler import chess_board

@@ -4,7 +4,7 @@ from os.path import abspath
 sys.path.extend([abspath(".")])
 
 import logging
-import numpy as np
+import cupy as np
 import matplotlib.pyplot as plt
 import muDIC.vlab as vlab
 import muDIC as dic

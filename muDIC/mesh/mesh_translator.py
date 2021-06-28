@@ -1,4 +1,4 @@
-import numpy as np
+import cupy as np
 from muDIC.solver.reference import find_covered_pixel_blocks
 from muDIC.elements.b_splines import BSplineSurface
 

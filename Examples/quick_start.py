@@ -9,8 +9,8 @@ import logging
 # Set the amount of info printed to terminal during analysis
 logging.basicConfig(format='%(name)s:%(levelname)s:%(message)s', level=logging.INFO)
 
+path = abspath('Examples/example_data')
 # Path to folder containing images
-path = r'./example_data/' # Use this formatting on Linux and Mac OS
 #path = r'c:\path\to\example_data\\'  # Use this formatting on Windows
 
 # Generate image instance containing all images found in the folder

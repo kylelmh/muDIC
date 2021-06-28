@@ -1,11 +1,11 @@
 import logging
 from functools import partial
 
-import numpy as np
+import cupy as np
 
 from ..utils import find_borders, find_inconsistent
 
-np.seterr(invalid='raise')
+# np.get().seterr(invalid='raise')
 
 
 class Reference(object):

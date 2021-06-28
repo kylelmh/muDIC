@@ -1,7 +1,7 @@
 import logging
 from unittest import TestCase
 
-import numpy as np
+import cupy as np
 
 import muDIC as dic
 import muDIC.solver.correlate

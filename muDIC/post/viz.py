@@ -1,7 +1,7 @@
 import logging
 
 import matplotlib.pyplot as plt
-import numpy as np
+import cupy as np
 from scipy.ndimage import map_coordinates
 from muDIC.elements.b_splines import BSplineSurface
 from muDIC.elements.q4 import Q4
