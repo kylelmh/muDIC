@@ -70,7 +70,9 @@ def find_element_coordinates_q4(xnod, ynod, elm):
     ymin, ymax = find_borders(ynod)
 
     # Make grid inside mesh borders
-    Xx, Yy = np.meshgrid(range(xmin, xmax + 1), range(ymin, ymax + 1))
+    rangex = np.array(range(xmin, xmax + 1))
+    rangey = np.array(range(ymin, ymax + 1))
+    Xx, Yy = np.meshgrid(rangex, rangey)
     X = Xx.flatten()
     Y = Yy.flatten()
 

@@ -3,7 +3,7 @@ from functools import partial
 
 import cupy as np
 import cupyx.scipy.ndimage as nd
-from scipy import optimize
+from cupyx.optimizing import optimize
 
 
 def num_diff(xs, ys, func, component=(1, 1)):

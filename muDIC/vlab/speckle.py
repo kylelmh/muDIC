@@ -1,7 +1,7 @@
 import random
 
 import cupy as np
-from scipy.ndimage import gaussian_filter
+from cupyx.scipy.ndimage import gaussian_filter
 
 try:
     from noise import pnoise2

@@ -13,7 +13,7 @@ This module is directly based on the conference paper:
 """
 
 import cupy as np
-from scipy import ndimage
+from cupyx.scipy import ndimage
 
 
 def coord_subpos(coord, fillfactor, n, i, sigma):

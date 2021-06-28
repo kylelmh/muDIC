@@ -4,7 +4,7 @@ from copy import copy
 from functools import partial
 
 import cupy as np
-from scipy import ndimage
+from cupyx.scipy import ndimage
 import imageio as io
 from natsort import natsorted
 

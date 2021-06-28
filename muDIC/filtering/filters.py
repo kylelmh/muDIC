@@ -1,6 +1,6 @@
 import cupy as np
 import cupyx.scipy.ndimage as nd
-from scipy.ndimage import median_filter
+from cupyx.scipy.ndimage import median_filter
 
 
 def highpass_gaussian(image, sigma=2.0):

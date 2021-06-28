@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import logging
 from copy import copy
+from IPython.core.debugger import set_trace
 
 import cupy as np
 import cupyx.scipy.ndimage as nd
@@ -179,7 +180,7 @@ def correlate(inputs, correlator, reference_gen):
     if settings.node_hist:
         node_coords = np.array(settings.node_hist, dtype=settings.precision)[:, :, 0]
     else:
-        node_coords = np.array((mesh.xnodes, mesh.ynodes), dtype=settings.precision)
+        node_coords = np.array([mesh.xnodes, mesh.ynodes], dtype=settings.precision)
 
     node_position_t.append(node_coords)
 
