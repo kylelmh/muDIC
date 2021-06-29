@@ -28,32 +28,52 @@ def make_grid_Q4(c1x, c1y, c2x, c2y, nx, ny, elm):
     n_decimals = 2
 
     elmwidth = float(c2x - c1x) / float(nx)
-    elmheigt = float(c2y - c1y) / float(ny)
+    elmheight = float(c2y - c1y) / float(ny)
 
     xnodes = elm.nodal_xpos * elmwidth
-    ynodes = elm.nodal_ypos * elmheigt
+    ynodes = elm.nodal_ypos * elmheight
 
-    elements = []
-    nodes = set()
+    ys = []
+    xs = []
 
-    for i in range(ny):
+    for i in range(ny): 
         for j in range(nx):
-            elements.append(zip(np.around(ynodes[:] + elmheigt * i,n_decimals), np.around(xnodes[:] + elmwidth * j,n_decimals)))
-            nodes.update(zip(np.around(ynodes[:] + elmheigt * i,n_decimals), np.around(xnodes[:] + elmwidth * j,n_decimals)))
+            y1 = np.around(ynodes[:] + elmheight * i,n_decimals)
+            x1 = np.around(xnodes[:] + elmwidth * j,n_decimals)
+            ys.append(y1)
+            xs.append(x1)
 
-    nodes = sorted(list(nodes))
+    xs = np.array(xs, dtype=np.float).flatten()
+    ys = np.array(ys, dtype=np.float).flatten()
 
+    nodes = np.column_stack([xs,ys])
+    nodes = cupy_unique_axis0(nodes)
+
+    ynod = nodes[:,0]
+    xnod = nodes[:,1]
+    
     con_matrix = []
+    offset = 0
 
     for e in range(nx * ny):
-        con_matrix.append(list(map(nodes.index, list(elements[e]))))
+        offset = np.int(e/nx)
+        li = [e,e+1,e+nx+2,e+nx+1]
+        li[:] = [i+offset for i in li]
+        con_matrix.append(li)
 
-    ynod, xnod = zip(*nodes)
     ynode = np.array(ynod) + c1y
     xnode = np.array(xnod) + c1x
 
     return np.array(con_matrix).transpose(), xnode, ynode
 
+def cupy_unique_axis0(array):
+        if len(array.shape) != 2:
+            raise ValueError("Input array must be 2D.")
+        sortarr     = array[np.lexsort(array.T[::-1])]
+        mask        = np.empty(array.shape[0], dtype=np.bool_)
+        mask[0]     = True
+        mask[1:]    = np.any(sortarr[1:] != sortarr[:-1], axis=1)
+        return sortarr[mask]
 
 def make_grid(c1x, c1y, c2x, c2y, ny, nx, elm):
     """
@@ -345,9 +365,9 @@ class Mesh(object):
 
             else:
                 raise ValueError("Unknown element type")
-
         except Exception as e:
             logger.exception("Mesh generation failed")
+            logger.exception(e)
 
     def scale_mesh_y(self, factor):
         """
