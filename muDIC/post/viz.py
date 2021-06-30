@@ -103,8 +103,8 @@ class Fields(object):
                 for i in range(2):
                     for t in range(n_frames):
                         self.__coords3__[0, i, :, :, t] = map_coordinates(self.__coords__[0, i, :, :, t],
-                                                                          [elms_y_fine.flatten(),
-                                                                           elms_x_fine.flatten()],
+                                                                          np.array([elms_y_fine.flatten(),
+                                                                           elms_x_fine.flatten()]),
                                                                           order=self.interpolation_order).reshape(
                             elms_x_fine.shape).transpose()
 
@@ -112,8 +112,8 @@ class Fields(object):
                     for j in range(2):
                         for t in range(n_frames):
                             self.__F3__[0, i, j, :, :, t] = map_coordinates(self.__F__[0, i, j, :, :, t],
-                                                                            [elms_y_fine.flatten(),
-                                                                             elms_x_fine.flatten()],
+                                                                            np.array([elms_y_fine.flatten(),
+                                                                             elms_x_fine.flatten()]),
                                                                             order=self.interpolation_order).reshape(
                                 elms_x_fine.shape).transpose()
 

@@ -5,8 +5,6 @@ from copy import copy
 
 import cupy as np
 import cupyx.scipy.ndimage as nd
-# import cupy as np
-# import cupyx.scipy.ndimage as nd
 
 from .reference import generate_reference
 from .reference_q4 import generate_reference_Q4, find_elm_borders_mesh, normalized_zero_mean
@@ -16,6 +14,10 @@ from ..elements.q4 import Q4
 from ..mesh.meshUtilities import Mesh
 from ..utils import convert_to_img_frame, find_element_borders
 
+memory_pool = np.cuda.MemoryPool()
+np.cuda.set_allocator(memory_pool.malloc)
+pinned_memory_pool = np.cuda.PinnedMemoryPool()
+np.cuda.set_pinned_memory_allocator(pinned_memory_pool.malloc)
 
 def correlate_img_to_ref_spline(node_pos, img, ref, settings):
     """
