@@ -33,8 +33,8 @@ def make_grid_Q4(c1x, c1y, c2x, c2y, nx, ny, elm):
     ynod = []
     xnod = []
 
-    for i in range(ny): 
-        for j in range(nx):
+    for i in range(ny+1): 
+        for j in range(nx+1):
             y1 = round(elmheight * i,n_decimals)
             x1 = round(elmwidth * j,n_decimals)
             ynod.append(y1)

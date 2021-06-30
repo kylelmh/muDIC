@@ -2,10 +2,6 @@ import cupy as np
 from ..utils import find_borders
 from .reference import Reference
 
-import cupy as np
-
-
-
 def normalized_zero_mean(im):
     # Zero mean normalized standard deviation
     return (im-np.average(im))/np.std(im)
@@ -21,10 +17,9 @@ def find_borders(coord):
 def find_elm_borders_mesh(node_coords,mesh, n_elms):
     # [Xmin_Xmax,Ymin,Ymax,elm_nr]
     borders = np.zeros((4, n_elms))
-
     for el in range(n_elms):
-        borders[:2, el] = find_borders(node_coords[0,mesh.ele[:, el]])
-        borders[2:, el] = find_borders(node_coords[1,mesh.ele[:, el]])
+        borders[:2, el] = np.array(find_borders(node_coords[0,mesh.ele[:, el]]))
+        borders[2:, el] = np.array(find_borders(node_coords[1,mesh.ele[:, el]]))
 
     return borders
 
@@ -98,8 +93,6 @@ def generate_reference_Q4(node_coords, mesh, im, settings, norm=False,image_id=0
     Ye = [[] for _ in range(nEl)]
     I0 = [[] for _ in range(nEl)]
 
-
-
     for el in range(nEl):
         epE[el], nyE[el], Xe[el], Ye[el] = find_element_coordinates_q4(node_coords[0,mesh.ele[:, el]], node_coords[1,mesh.ele[:, el]], elm)
 
@@ -123,14 +116,10 @@ def generate_reference_Q4(node_coords, mesh, im, settings, norm=False,image_id=0
     K = np.zeros((np.size(mesh.xnodes) * 2, np.size(mesh.xnodes) * 2), dtype=np.float64)
     B = [np.zeros((2 * nNodes, np.shape(Xe[i])[0]), dtype=np.float64) for i in range(nEl)]
 
-
-
-
     for el in range(nEl):
-
         for i in range(elm.n_nodes):
-            B[el][i, :] = np.array([I0grad[el][0] * Nref[el][:, i]])
-            B[el][i + elm.n_nodes, :] = np.array([I0grad[el][1] * Nref[el][:, i]])
+            B[el][i, :] = np.array([I0grad[el][0] * Nref[el][:, i]])[0]
+            B[el][i + elm.n_nodes, :] = np.array([I0grad[el][1] * Nref[el][:, i]])[0]
         # Calculate B^T * B
         A = np.dot(B[el], B[el].transpose())
         # Assemble K matrix
@@ -138,7 +127,6 @@ def generate_reference_Q4(node_coords, mesh, im, settings, norm=False,image_id=0
         K[np.ix_((mesh.ele[:, el] + 1) * 2 - 2, (mesh.ele[:, el] + 1) * 2 - 1)] += A[:elm.n_nodes, elm.n_nodes:]
         K[np.ix_((mesh.ele[:, el] + 1) * 2 - 1, (mesh.ele[:, el] + 1) * 2 - 2)] += A[elm.n_nodes:, :elm.n_nodes]
         K[np.ix_((mesh.ele[:, el] + 1) * 2 - 1, (mesh.ele[:, el] + 1) * 2 - 1)] += A[elm.n_nodes:, elm.n_nodes:]
-
 
     K = np.linalg.inv(K)
 

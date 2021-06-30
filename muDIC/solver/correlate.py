@@ -2,7 +2,6 @@ from __future__ import absolute_import
 
 import logging
 from copy import copy
-from IPython.core.debugger import set_trace
 
 import cupy as np
 import cupyx.scipy.ndimage as nd
