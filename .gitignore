@@ -126,3 +126,5 @@ dmypy.json
 *.p
 
 documentation/\.vscode/
+
+Examples/example_data_cropped
